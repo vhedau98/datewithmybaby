@@ -1,0 +1,430 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>A Very Important Question ❤️</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: "Segoe UI", sans-serif;
+      background: linear-gradient(135deg, #fff0f5, #f8eaff, #ffe4ec);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      color: #4a2633;
+    }
+
+    /* Floating hearts */
+    .heart {
+      position: fixed;
+      bottom: -30px;
+      font-size: 20px;
+      opacity: 0.7;
+      animation: floatUp linear infinite;
+      pointer-events: none;
+    }
+
+    @keyframes floatUp {
+      from {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0;
+      }
+
+      20% {
+        opacity: 0.8;
+      }
+
+      to {
+        transform: translateY(-110vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    .container {
+      width: min(92%, 520px);
+      text-align: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.82);
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
+      border-radius: 30px;
+      padding: 45px 30px;
+      box-shadow: 0 20px 60px rgba(173, 77, 115, 0.18);
+      border: 1px solid rgba(255, 255, 255, 0.8);
+      transition: 0.4s ease;
+    }
+
+    .emoji {
+      font-size: 65px;
+      margin-bottom: 20px;
+      animation: bounce 2s infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-8px);
+      }
+    }
+
+    h1 {
+      font-size: clamp(30px, 7vw, 45px);
+      line-height: 1.15;
+      margin-bottom: 15px;
+      color: #8f3157;
+    }
+
+    p {
+      font-size: 17px;
+      line-height: 1.6;
+      color: #76515f;
+      margin-bottom: 30px;
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap;
+      position: relative;
+    }
+
+    button,
+    .form-button {
+      border: none;
+      border-radius: 50px;
+      padding: 15px 28px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      font-family: inherit;
+    }
+
+    .yes-btn {
+      background: #e94f87;
+      color: white;
+      box-shadow: 0 8px 20px rgba(233, 79, 135, 0.3);
+    }
+
+    .yes-btn:hover {
+      transform: translateY(-3px) scale(1.03);
+      box-shadow: 0 12px 25px rgba(233, 79, 135, 0.4);
+    }
+
+    .no-btn {
+      background: #f3e5eb;
+      color: #8f5369;
+      position: relative;
+    }
+
+    .no-btn:hover {
+      transform: scale(0.95);
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .success-icon {
+      font-size: 70px;
+      margin-bottom: 15px;
+    }
+
+    .form-button {
+      display: inline-block;
+      text-decoration: none;
+      background: linear-gradient(135deg, #e94f87, #b94f9b);
+      color: white;
+      box-shadow: 0 10px 25px rgba(185, 79, 155, 0.3);
+    }
+
+    .form-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 30px rgba(185, 79, 155, 0.4);
+    }
+
+    .small-text {
+      margin-top: 20px;
+      font-size: 13px;
+      color: #a27788;
+    }
+
+    .heart-pop {
+      position: fixed;
+      pointer-events: none;
+      font-size: 25px;
+      animation: pop 1.5s ease forwards;
+      z-index: 20;
+    }
+
+    @keyframes pop {
+      0% {
+        transform: translate(0, 0) scale(0.5);
+        opacity: 0;
+      }
+
+      20% {
+        opacity: 1;
+      }
+
+      100% {
+        transform: translate(
+          calc(-100px + 200px * var(--random-x)),
+          calc(-100px - 200px * var(--random-y))
+        ) scale(1.5);
+        opacity: 0;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .card {
+        padding: 35px 22px;
+      }
+
+      .emoji {
+        font-size: 55px;
+      }
+
+      h1 {
+        font-size: 32px;
+      }
+
+      p {
+        font-size: 16px;
+      }
+
+      .buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      button,
+      .form-button {
+        width: 100%;
+        max-width: 280px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Floating hearts -->
+  <div class="heart" style="left: 8%; animation-duration: 8s; animation-delay: 1s;">♡</div>
+  <div class="heart" style="left: 20%; animation-duration: 10s; animation-delay: 3s;">♥</div>
+  <div class="heart" style="left: 35%; animation-duration: 7s; animation-delay: 2s;">♡</div>
+  <div class="heart" style="left: 55%; animation-duration: 11s; animation-delay: 4s;">♥</div>
+  <div class="heart" style="left: 72%; animation-duration: 8s; animation-delay: 1s;">♡</div>
+  <div class="heart" style="left: 88%; animation-duration: 9s; animation-delay: 5s;">♥</div>
+
+
+  <main class="container">
+
+    <!-- QUESTION SCREEN -->
+    <section class="card" id="questionScreen">
+
+      <div class="emoji">💌</div>
+
+      <h1>
+        I have a very<br>
+        important question for you my baby...
+      </h1>
+
+      <p>
+        And I need you to think very carefully<br>
+        before answering me okay baccha. 👀
+      </p>
+
+      <button class="yes-btn" onclick="showDateScreen()">
+        Tell me buba ❤️
+      </button>
+
+    </section>
+
+
+    <!-- DATE SCREEN -->
+    <section class="card hidden" id="dateScreen">
+
+      <div class="emoji">🌹</div>
+
+      <h1>
+        Will you go<br>
+        on a date with me hehehe?
+      </h1>
+
+      <p>
+        Just you, me, some good food,<br>
+        and hopefully a lot of memories my love. ❤️
+      </p>
+
+      <div class="buttons">
+
+        <button class="yes-btn" onclick="sayYes()">
+          YES ❤️
+        </button>
+
+        <button class="no-btn" id="noButton" onclick="moveNoButton()">
+          No 😭
+        </button>
+
+      </div>
+
+      <div class="small-text">
+        Choose wisely... 👀
+      </div>
+
+    </section>
+
+
+    <!-- SUCCESS SCREEN -->
+    <section class="card hidden" id="successScreen">
+
+      <div class="success-icon">🥹❤️</div>
+
+      <h1>
+        IT'S A DATE LOVEEEYYYY!
+      </h1>
+
+      <p>
+        Okay, now you've officially made<br>
+        my day 1000x better hhehe. 🥰
+      </p>
+
+      <p>
+        But before we plan everything babyy...
+      </p>
+
+      <!-- CHANGE THIS URL -->
+      <a
+        class="form-button"
+        href="YOUR_GOOGLE_FORM_URL_HERE"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        💌 Check out this form
+      </a>
+    </section>
+
+  </main>
+
+
+  <script>
+
+    /* Change screen */
+    function showDateScreen() {
+      document.getElementById("questionScreen").classList.add("hidden");
+      document.getElementById("dateScreen").classList.remove("hidden");
+    }
+
+
+    /* YES button */
+    function sayYes() {
+
+      createHeartExplosion();
+
+      setTimeout(() => {
+        document.getElementById("dateScreen").classList.add("hidden");
+        document.getElementById("successScreen").classList.remove("hidden");
+      }, 600);
+    }
+
+
+    /* Playful NO button */
+    function moveNoButton() {
+
+      const button = document.getElementById("noButton");
+
+      const maxX = 120;
+      const maxY = 80;
+
+      const randomX = Math.random() * maxX * 2 - maxX;
+      const randomY = Math.random() * maxY * 2 - maxY;
+
+      button.style.transform =
+        `translate(${randomX}px, ${randomY}px)`;
+
+      button.innerText = getFunnyText();
+    }
+
+
+    function getFunnyText() {
+
+      const messages = [
+        "Are you sure pillu? 🥺",
+        "Really babyyyy? 😭",
+        "Think again maza baccha! 👀",
+        "Wrong button jaanu 😌",
+        "Try YES hehe❤️",
+        "Nope, not allowed bacchu 😂",
+        "I'll pretend I didn't see that uhuhu 😭",
+        "Seriously my loveee?! 🥲"
+      ];
+
+      return messages[
+        Math.floor(Math.random() * messages.length)
+      ];
+    }
+
+
+    /* Heart explosion */
+    function createHeartExplosion() {
+
+      const hearts = ["❤️", "💕", "💗", "💖", "💘"];
+
+      for (let i = 0; i < 25; i++) {
+
+        const heart = document.createElement("div");
+
+        heart.className = "heart-pop";
+
+        heart.innerText =
+          hearts[Math.floor(Math.random() * hearts.length)];
+
+        heart.style.left =
+          Math.random() * 100 + "vw";
+
+        heart.style.top =
+          Math.random() * 100 + "vh";
+
+        heart.style.setProperty(
+          "--random-x",
+          Math.random()
+        );
+
+        heart.style.setProperty(
+          "--random-y",
+          Math.random()
+        );
+
+        document.body.appendChild(heart);
+
+        setTimeout(() => {
+          heart.remove();
+        }, 1500);
+      }
+    }
+
+  </script>
+
+</body>
+</html>
+```
